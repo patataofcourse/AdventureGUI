@@ -45,5 +45,5 @@ def on_show():
 
 as_thread = threading.Thread(target=adventurescript.parse_sync, args=("test",))
 
-#as_thread.start()
+as_thread.start()
 pyglet.app.run()

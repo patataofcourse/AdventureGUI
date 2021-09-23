@@ -1,0 +1,67 @@
+{merge} [n]
+Contents of **THE INVENTORY** (tm)
+&&
+Money: &&.money moneys
+Size: &&.size items
+
+[choice ch1="Add item"; go1={add}; ch2="Remove item"; go2={remove}; ch3="Find item"; go3={find}; ch4="Money shiz"; go4={muns};ch5="GIMME THAT COMPLEX SHIT"; go5={moar}; ch6="i wanna gtfo"; go6={gtfo}]
+#
+{add} [invadd item="item"; gofail={notenoughspace}]
+Item commit add.
+[goto pos={merge}]
+#
+{remove} [invrmv item="item"; gofail={donthave}]
+Item commit remove.
+[goto pos={merge}]
+#
+{find} Looking for item "item"...
+[invfind item="item"; gotrue={found}; gofalse={notfound}]
+[goto pos={merge}]
+#
+{found} You do have an item. Huh.
+[goto pos={merge}]
+{notfound} You don't have an item.
+[goto pos={merge}]
+#
+{muns} [choice text="ok what do you want to do with money"; ch1="get 10 moneys"; ch2="remove 10 moneys"; go1={munsplus}; go2={munsminus}]
+#
+#I am too lazy to make this not bad lol
+{munsplus} [addmoney amount=20]
+{munsminus} [rmvmoney amount=10; gofail={notenoughmuns}]
+the moneying happen
+[checkmoney amount=1; gotrue={munsgud}; gofalse={munsbad}]
+{munsgud} you have muns congrats
+[goto pos={merge}]
+{munsbad} you don't have muns you suck
+[goto pos={merge}]
+#
+{moar} ok, still a wip tho
+[choice ch1="upgrade"; go1={upgrade}; ch2="buy"; go2={wip}; ch3="sell"; go3={wip}]
+#
+{upgrade} [choice text="ok which one is it"; ch1="+1 slot"; go1={up}; ch2="-1 slot"; go2={down}]
+{up} ok
+[invupgrade size=1]
+[goto pos={merge}]
+{down} ok
+[invdowngrade size=1; gofail={mini_inv}]
+[goto pos={merge}]
+#
+{gtfo} ok asshat [n]
+[ending name="Inventory"]
+#
+# Errors
+#
+{notenoughmuns} ok wtf asshole you don't have enough money please go
+[goto pos={merge}]
+#
+{notenoughspace} Your inventory is too tiny for all the stuff you're trying to carry :P
+[goto pos={merge}]
+#
+{donthave} You don't have any items I can remove.
+[goto pos={merge}]
+#
+{mini_inv} Okay, look, you need to have an inventory capable of holding *something*
+[goto pos={merge}]
+#
+{wip} not implemented yet lol
+[goto pos={merge}]
