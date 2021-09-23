@@ -1,10 +1,10 @@
 import os
 import platform
 
-def show(text, **kwargs):
+def show(info, text, **kwargs):
     print(text)
 
-def wait(**kwargs):
+def wait(info, **kwargs):
     if platform.system() == "Linux" or platform.system() == "Darwin":
         os.system('read -s -n 1')
     elif platform.system() == "Windows":
@@ -14,10 +14,10 @@ def wait(**kwargs):
 
 def query(info, text, choices, allow_save, **kwargs):
     if text != "":
-        info.showfunc(text)
+        info.showfunc(info, text)
     c = 1
     for ch in choices:
-        info.showfunc(f"{c}. {ch}")
+        info.showfunc(info, f"{c}. {ch}")
         c += 1
     result = ""
     while True:
@@ -25,16 +25,16 @@ def query(info, text, choices, allow_save, **kwargs):
         if allow_save:
             if result == "s":
                 info.save()
-                info.showfunc("Saved!")
+                info.showfunc(info, "Saved!")
                 continue
             elif result == "r":
                 try:
                     info.load_save()
                 except Exception as e:
                     print(e)
-                    info.showfunc("No save exists!")
+                    info.showfunc(info, "No save exists!")
                 else:
-                    info.showfunc("Save restored!")
+                    info.showfunc(info, "Save restored!")
                     info.reload()
                     return 0
         if result == "q":
