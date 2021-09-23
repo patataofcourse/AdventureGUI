@@ -32,10 +32,7 @@ frame.add_widget(restore_btn)
 quit_btn = pyglet.gui.PushButton(816, 8, pressed=res.btn_quit_p, depressed=res.btn_quit, batch=batch)
 frame.add_widget(quit_btn)
 
-buttons[0]._depressed_img = res.btn_input
-buttons[0]._hover_img = res.btn_input
-buttons[0]._pressed_img = res.btn_input_p
-buttons[0]._sprite.image = res.btn_input
+res.change_button_gfx(buttons[0], res.btn_input)
 
 @window.event
 def on_draw():

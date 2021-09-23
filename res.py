@@ -21,3 +21,9 @@ pressed = {
     btn_restore: btn_restore_p,
     btn_quit: btn_quit_p
 }
+
+def change_button_gfx(button, gfx):
+    button._depressed_img = gfx
+    button._hover_img = gfx
+    button._pressed_img = pressed.get(gfx, gfx)
+    button._sprite.image = gfx
