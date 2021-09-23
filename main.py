@@ -30,4 +30,3 @@ as_thread = threading.Thread(target=run_as)
 
 as_thread.start()
 pyglet.app.run()
-as_thread.join()

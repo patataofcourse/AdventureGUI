@@ -2,7 +2,8 @@ import pyglet
 
 import res
 
-global window, buttons, save_btn, restore_btn, quit_btn
+closed = False
+
 window = pyglet.window.Window(width=888, height=80, caption="AdventureGUI (currently just a control thing lmao)")
 batch = pyglet.graphics.Batch()
 
@@ -31,10 +32,15 @@ def on_draw():
     batch.draw()
 
 @window.event
-def on_show():
+def on_show(): #needed for minimization shit
     pass
 
-def change_button_gfx(button, gfx):
+@window.event
+def on_close():
+    global closed
+    closed = True
+
+def change_button_gfx(button, gfx): #TODO: fix buttons not redrawing
     button._depressed_img = gfx
     button._hover_img = gfx
     button._pressed_img = res.pressed.get(gfx, gfx)

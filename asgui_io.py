@@ -13,8 +13,10 @@ def wait(info, **kwargs):
     events.value = ""
     events.wait = True
     window.change_button_gfx(window.buttons[0], res.btn_input)
-    while events.value == "":
+    while events.value == "" and not window.closed:
         time.sleep(1/60)
+    if window.closed:
+        quit()
     window.change_button_gfx(window.buttons[0], res.btn_grey)
     events.wait = False
 
