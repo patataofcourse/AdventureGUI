@@ -17,15 +17,16 @@ def hex_color(hex, alpha=0xff):
     blue = hex & 0xff
     return red, green, blue, alpha
 
-as_thread = threading.Thread(
-        target=adventurescript.parse_sync,
-        args=("test",),
-        kwargs={
-                "show": io.show,
-                "wait": io.wait,
-                "query": io.query,
-                "load_file": io.load_file
-            })
+def run_as():
+    adventurescript.parse_sync("test",
+        show= io.show,
+        wait= io.wait,
+        query= io.query,
+        load_file= io.load_file
+    )
+    window.window.close()
+
+as_thread = threading.Thread(target=run_as)
 
 as_thread.start()
 pyglet.app.run()

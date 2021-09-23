@@ -11,11 +11,11 @@ load_file = default.load_file
 
 def wait(info, **kwargs):
     events.value = ""
-    events.wait = False
+    events.wait = True
     window.change_button_gfx(window.buttons[0], res.btn_input)
     while events.value == "":
         time.sleep(1/60)
     window.change_button_gfx(window.buttons[0], res.btn_grey)
-    events.wait = True
+    events.wait = False
 
 # io = default.as_io(default.show, default.wait, default.query, default.load_file)

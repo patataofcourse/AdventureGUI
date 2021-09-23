@@ -13,7 +13,6 @@ def quit():
         global value
         value = "q"
         window.close()
-        pyglet.app.exit()
 
 def button1():
     if choice or wait:
