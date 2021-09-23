@@ -1,13 +1,16 @@
 import pyglet
 
+import window as w
+window = w.window
+
 max_buttons = 0
-running = True
+choice = False
+wait = False
 value = ""
 
-window = pyglet.window.Window(width=888, height=80, caption="AdventureGUI (currently just a control thing lmao)")
-
 def quit():
-    if not running:
-        pyglet.app.exit()
-        window.close()
+    if choice:
+        global value
         value = "q"
+        window.close()
+        pyglet.app.exit()
