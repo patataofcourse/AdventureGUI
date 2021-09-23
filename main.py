@@ -17,8 +17,6 @@ def hex_color(hex, alpha=0xff):
     blue = hex & 0xff
     return red, green, blue, alpha
 
-window.quit_btn.set_handler("on_release", events.quit)
-
 as_thread = threading.Thread(
         target=adventurescript.parse_sync,
         args=("test",),
