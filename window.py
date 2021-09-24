@@ -31,9 +31,9 @@ def on_draw():
     window.clear()
     batch.draw()
 
-@window.event
-def on_show(): #needed for minimization shit
+def update(dt): #update every frame
     pass
+pyglet.clock.schedule_interval(update, 1/60)
 
 @window.event
 def on_close():
