@@ -40,7 +40,7 @@ def on_close():
     global closed
     closed = True
 
-def change_button_gfx(button, gfx): #TODO: fix buttons not redrawing
+def change_button_gfx(button, gfx):
     button._depressed_img = gfx
     button._hover_img = gfx
     button._pressed_img = res.pressed.get(gfx, gfx)
