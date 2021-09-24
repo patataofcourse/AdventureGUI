@@ -32,6 +32,8 @@ btn_blue_p = pyglet.resource.image("button_blue_p.png")
 btn_purple = pyglet.resource.image("button_purple.png")
 btn_purple_p = pyglet.resource.image("button_purple_p.png")
 
+number_buttons = [btn_red, btn_orange, btn_yellow, btn_green, btn_blue, btn_purple, btn_input, btn_input, btn_input]
+
 pressed = {
     btn_input: btn_input_p,
     btn_grey: btn_grey,

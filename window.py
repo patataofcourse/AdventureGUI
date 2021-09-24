@@ -32,7 +32,10 @@ def on_draw():
     batch.draw()
 
 def update(dt): #update every frame
-    pass
+    if closed:
+        pyglet.app.exit()
+        if hasattr(pyglet.window, "close"):
+            window.close()
 pyglet.clock.schedule_interval(update, 1/60)
 
 @window.event

@@ -18,13 +18,13 @@ def hex_color(hex, alpha=0xff):
     return red, green, blue, alpha
 
 def run_as():
-    adventurescript.parse_sync("test",
+    print(adventurescript.parse_sync("test",
         show= io.show,
         wait= io.wait,
         query= io.query,
         load_file= io.load_file
-    )
-    window.window.close()
+    ))
+    window.closed = True
 
 as_thread = threading.Thread(target=run_as)
 
