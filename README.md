@@ -14,6 +14,7 @@ this readme is mostly a reference for me, at least for now. will clean up for pu
 - v0.3: scroll area
 - v1.0 alpha: all required features, including images and button colors
 - v1.0 beta: includes fixes found in the alpha
+- v1.0: includes fixes found in the beta
 
 ## Files
 * main.py: launches everything, game should be located @ games/test for now
