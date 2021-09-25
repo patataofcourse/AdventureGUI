@@ -16,6 +16,10 @@ def wait(info, **kwargs):
         time.sleep(1/60)
     if window.closed:
         quit()
+    if events.value == "q":
+        info.status = "quit"
+        info.showfunc(info, ">> Quit")
+        return 0
     window.change_button_gfx(window.buttons[0], res.btn_grey)
     events.wait = False
 

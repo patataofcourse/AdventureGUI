@@ -20,7 +20,7 @@ def restore():
         value = "r"
 
 def quit():
-    if choice:
+    if choice or wait:
         global value
         value = "q"
         window.close()
