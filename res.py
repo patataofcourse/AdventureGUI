@@ -32,7 +32,34 @@ btn_blue_p = pyglet.resource.image("button_blue_p.png")
 btn_purple = pyglet.resource.image("button_purple.png")
 btn_purple_p = pyglet.resource.image("button_purple_p.png")
 
-number_buttons = [btn_red, btn_orange, btn_yellow, btn_green, btn_blue, btn_purple, btn_input, btn_input, btn_input]
+btn_1 = pyglet.resource.image("button_1.png")
+btn_1_p = pyglet.resource.image("button_1.png")
+
+btn_2 = pyglet.resource.image("button_2.png")
+btn_2_p = pyglet.resource.image("button_2.png")
+
+btn_3 = pyglet.resource.image("button_3.png")
+btn_3_p = pyglet.resource.image("button_3.png")
+
+btn_4 = pyglet.resource.image("button_4.png")
+btn_4_p = pyglet.resource.image("button_4.png")
+
+btn_5 = pyglet.resource.image("button_5.png")
+btn_5_p = pyglet.resource.image("button_5.png")
+
+btn_6 = pyglet.resource.image("button_6.png")
+btn_6_p = pyglet.resource.image("button_6.png")
+
+btn_7 = pyglet.resource.image("button_7.png")
+btn_7_p = pyglet.resource.image("button_7.png")
+
+btn_8 = pyglet.resource.image("button_8.png")
+btn_8_p = pyglet.resource.image("button_8.png")
+
+btn_9 = pyglet.resource.image("button_9.png")
+btn_9_p = pyglet.resource.image("button_9.png")
+
+number_buttons = [btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9]
 
 pressed = {
     btn_input: btn_input_p,
@@ -45,5 +72,14 @@ pressed = {
     btn_yellow: btn_yellow_p,
     btn_green: btn_green_p,
     btn_blue: btn_blue_p,
-    btn_purple: btn_purple_p
+    btn_purple: btn_purple_p,
+    btn_1: btn_1_p,
+    btn_2: btn_2_p,
+    btn_3: btn_3_p,
+    btn_4: btn_4_p,
+    btn_5: btn_5_p,
+    btn_6: btn_6_p,
+    btn_7: btn_7_p,
+    btn_8: btn_8_p,
+    btn_9: btn_9_p
 }

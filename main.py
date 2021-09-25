@@ -18,7 +18,7 @@ def hex_color(hex, alpha=0xff):
     return red, green, blue, alpha
 
 def run_as():
-    print(adventurescript.parse_sync("test",
+    print("Returned: " + adventurescript.parse_sync("test",
         show= io.show,
         wait= io.wait,
         query= io.query,
