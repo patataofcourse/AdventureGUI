@@ -7,6 +7,17 @@ max_buttons = 1
 choice = False
 wait = False
 value = ""
+cansave = False
+
+def save():
+    if cansave:
+        global value
+        value = "s"
+
+def restore():
+    if cansave:
+        global value
+        value = "r"
 
 def quit():
     if choice:
@@ -66,4 +77,6 @@ for button in w.buttons:
     button.set_handler("on_release", button_events[c])
     c += 1
 
+w.save_btn.set_handler("on_release", save)
+w.restore_btn.set_handler("on_release", restore)
 w.quit_btn.set_handler("on_release", quit)

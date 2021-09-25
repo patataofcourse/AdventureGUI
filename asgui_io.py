@@ -30,6 +30,10 @@ def query(info, text, choices, allow_save, **kwargs):
     events.value = ""
     events.choice = True
     events.max_buttons = c-1
+    if allow_save:
+        events.cansave = True
+        window.change_button_gfx(window.save_btn, res.btn_save)
+        window.change_button_gfx(window.restore_btn, res.btn_restore)
     for choice in range(c-1):
         window.change_button_gfx(window.buttons[choice], res.number_buttons[choice])
     while events.value == "" and not window.closed:
@@ -38,13 +42,34 @@ def query(info, text, choices, allow_save, **kwargs):
         quit()
     for choice in range(c-1):
         window.change_button_gfx(window.buttons[choice], res.btn_grey)
+    window.change_button_gfx(window.save_btn, res.btn_grey)
+    window.change_button_gfx(window.restore_btn, res.btn_grey)
     events.choice = False
+    events.cansave = False
     if events.value == "q":
         info.status = "quit"
-        print(">> Quit")
+        info.showfunc(info, ">> Quit")
         return 0
+    elif events.value == "s":
+        info.showfunc(info, ">> Save")
+        info.save()
+        info.showfunc(info, "Saved!")
+        info.pointer -= 1
+        return 0
+    elif events.value == "r":
+        info.showfunc(info, ">> Restore save")
+        try:
+            info.load_save()
+        except Exception as e:
+            info.showfunc(info, "No save exists!")
+            info.pointer -= 1
+            return 0
+        else:
+            info.showfunc(info, "Save restored!")
+            info.reload()
+            return 0
     else:
-        print(">> " + events.value)
+        info.showfunc(info, ">> " + events.value)
         return int(events.value)
 
 # io = default.as_io(default.show, default.wait, default.query, default.load_file)

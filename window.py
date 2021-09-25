@@ -17,10 +17,10 @@ for b in range(9):
     buttons.append(b)
     x += 72
 
-save_btn = pyglet.gui.PushButton(672, 8, res.btn_save_p, res.btn_save, batch=batch)
+save_btn = pyglet.gui.PushButton(672, 8, res.btn_grey, res.btn_grey, batch=batch)
 frame.add_widget(save_btn)
 
-restore_btn = pyglet.gui.PushButton(744, 8, res.btn_restore_p, res.btn_restore, batch=batch)
+restore_btn = pyglet.gui.PushButton(744, 8, res.btn_grey, res.btn_grey, batch=batch)
 frame.add_widget(restore_btn)
 
 quit_btn = pyglet.gui.PushButton(816, 8, res.btn_quit_p, res.btn_quit, batch=batch)
