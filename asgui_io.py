@@ -41,8 +41,10 @@ def query(info, text, choices, allow_save, **kwargs):
     events.choice = False
     if events.value == "q":
         info.status = "quit"
+        print(">> Quit")
         return 0
     else:
+        print(">> " + events.value)
         return int(events.value)
 
 # io = default.as_io(default.show, default.wait, default.query, default.load_file)
