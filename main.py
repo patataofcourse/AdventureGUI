@@ -1,5 +1,6 @@
 import adventurescript
 import threading
+import sys
 
 import pyglet
 pyglet.resource.path = ['resources']
@@ -18,7 +19,7 @@ def hex_color(hex, alpha=0xff):
     return red, green, blue, alpha
 
 def run_as():
-    print("Returned: " + adventurescript.parse_sync("test",
+    print("Returned: " + adventurescript.parse_sync(sys.argv[1] if len(sys.argv) > 0 else "test",
         show= io.show,
         wait= io.wait,
         query= io.query,
