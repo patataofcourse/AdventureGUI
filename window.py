@@ -4,7 +4,7 @@ import res
 
 closed = False
 
-window = pyglet.window.Window(width=888, height=80, caption="AdventureGUI (currently just a control thing lmao)")
+window = pyglet.window.Window(width=888, height=80, caption="AdventureGUI v0.1")
 batch = pyglet.graphics.Batch()
 
 frame = pyglet.gui.Frame(window, order=4)
