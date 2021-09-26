@@ -18,11 +18,11 @@ def hex_color(hex, alpha=0xff):
     blue = hex & 0xff
     return red, green, blue, alpha
 
-if len(sys.argv) <=0:
-    sys.argv = ["main.py", "test"]
-
 def run_as():
-    print("Returned: " + adventurescript.parse_sync(sys.argv[1] if len(sys.argv) > 0 else "test",
+    name = "test"
+    if len(sys.argv) > 1:
+        name = sys.argv[1]
+    print("Returned: " + adventurescript.parse_sync(name,
         show= io.show,
         wait= io.wait,
         query= io.query,
