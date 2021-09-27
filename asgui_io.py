@@ -7,7 +7,9 @@ import window
 
 load_file = default.load_file
 def show(info, text):
-    window.labeltext += text + "\n"
+    window.labeltext += text.split("\n")
+    if len(window.labeltext) > 20:
+        window.labeltext = window.labeltext[-20:]
 
 def wait(info, **kwargs):
     events.value = ""

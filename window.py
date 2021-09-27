@@ -3,6 +3,8 @@ import pyglet
 import res
 from func import *
 
+LABEL_LINES = 20
+
 closed = False
 
 window = pyglet.window.Window(width=888, height=480, caption="AdventureGUI v0.2-dev")
@@ -28,12 +30,12 @@ quit_btn = pyglet.gui.PushButton(816, 8, res.btn_quit_p, res.btn_quit, batch=bat
 frame.add_widget(quit_btn)
 
 label = pyglet.text.Label("",x=8,y=472-18, height=392, width=872, color=(255,255,255,255), batch=batch, multiline = True)
-labeltext = ""
+labeltext = []
 
 @window.event
 def on_draw():
     window.clear()
-    label.text = labeltext
+    label.text = "\n".join(labeltext)
     batch.draw()
 
 def update(dt): #update every frame
