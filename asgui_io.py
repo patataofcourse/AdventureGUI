@@ -5,8 +5,9 @@ import events
 import res
 import window
 
-show = default.show
 load_file = default.load_file
+def show(info, text):
+    window.labeltext += text + "\n"
 
 def wait(info, **kwargs):
     events.value = ""
