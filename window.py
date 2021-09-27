@@ -5,7 +5,7 @@ from func import *
 
 closed = False
 
-window = pyglet.window.Window(width=888, height=480, caption="AdventureGUI v0.1")
+window = pyglet.window.Window(width=888, height=480, caption="AdventureGUI v0.2-dev")
 batch = pyglet.graphics.Batch()
 
 frame = pyglet.gui.Frame(window, order=4)

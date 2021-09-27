@@ -5,7 +5,13 @@ this readme is mostly a reference for me, at least for now. will clean up ~~for 
 ## Roadmap
 - v0.1: full-fledged control panel - done! :D
 - v0.2: printing tm
+    - show the text
+    - make it not overflow
+    - use a custom font
 - v0.3: scroll area
+    - scroll back up
+    - also make it have cool buttons too
+    - add background to the main screen
 - v0.4: title screen, achievement screen, credits screen
 - v1.0 alpha: all required features, including images and button colors
 - v1.0 beta: includes fixes found in the alpha
@@ -17,6 +23,7 @@ this readme is mostly a reference for me, at least for now. will clean up ~~for 
 * events.py: manages button handlers
 * window.py: all the proper pyglet window code
 * res.py: loads the files inside resources, like images and such
+* func.py: some useful stuff
 
 ## Instructions
 You'll need `pyglet` to use this. Download it using pip.
