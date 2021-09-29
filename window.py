@@ -3,6 +3,8 @@ import sys
 import pygame
 import pygame.locals as l
 
+from func import *
+
 closed = False
 
 fps = 60
@@ -18,6 +20,7 @@ def run():
     if closed:
         pygame.quit()
         return
+    
     # Get inputs
     for event in pygame.event.get() :
       if event.type == l.QUIT :
@@ -29,6 +32,6 @@ def run():
     # This section will be built out later
  
     # Render elements of the game
-    window.fill((0,0,0))
+    window.fill(color("0aa"))
     pygame.display.update()
     clock.tick(fps)
