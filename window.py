@@ -32,6 +32,6 @@ def run():
     # This section will be built out later
  
     # Render elements of the game
-    window.fill(color("0aa"))
+    window.fill(color("333"))
     pygame.display.update()
     clock.tick(fps)
