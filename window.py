@@ -1,57 +1,34 @@
-import pyglet
+import sys
 
-import res
-from func import *
-
-LABEL_LINES = 20
+import pygame
+import pygame.locals as l
 
 closed = False
 
-window = pyglet.window.Window(width=888, height=480, caption="AdventureGUI v0.2-dev")
-batch = pyglet.graphics.Batch()
+fps = 60
+clock = pygame.time.Clock()
 
-frame = pyglet.gui.Frame(window, order=4)
+window = pygame.display.set_mode((888, 80))
+pygame.display.set_caption('My Game!')
 
-buttons = []
-x = 8
-for b in range(9):
-    b = pyglet.gui.PushButton(x, 8, res.btn_grey, res.btn_grey, batch=batch)
-    frame.add_widget(b)
-    buttons.append(b)
-    x += 72
-
-save_btn = pyglet.gui.PushButton(672, 8, res.btn_grey, res.btn_grey, batch=batch)
-frame.add_widget(save_btn)
-
-restore_btn = pyglet.gui.PushButton(744, 8, res.btn_grey, res.btn_grey, batch=batch)
-frame.add_widget(restore_btn)
-
-quit_btn = pyglet.gui.PushButton(816, 8, res.btn_quit_p, res.btn_quit, batch=batch)
-frame.add_widget(quit_btn)
-
-label = pyglet.text.Label("",x=8,y=472-18, height=392, width=872, color=(255,255,255,255), batch=batch, multiline = True)
-labeltext = []
-
-@window.event
-def on_draw():
-    window.clear()
-    label.text = "\n".join(labeltext)
-    batch.draw()
-
-def update(dt): #update every frame
-    if closed:
-        pyglet.app.exit()
-        if hasattr(pyglet.window, "close"):
-            window.close()
-pyglet.clock.schedule_interval(update, 1/60)
-
-@window.event
-def on_close():
+def run():
+  # The main game loop
+  while True:
     global closed
-    closed = True
-
-def change_button_gfx(button, gfx):
-    button._depressed_img = gfx
-    button._hover_img = gfx
-    button._pressed_img = res.pressed.get(gfx, gfx)
-    button._sprite.image = gfx
+    if closed:
+        pygame.quit()
+        return
+    # Get inputs
+    for event in pygame.event.get() :
+      if event.type == l.QUIT :
+        pygame.quit()
+        closed = True
+        return
+    
+    # Processing
+    # This section will be built out later
+ 
+    # Render elements of the game
+    window.fill((0,0,0))
+    pygame.display.update()
+    clock.tick(fps)
