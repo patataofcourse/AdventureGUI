@@ -4,11 +4,15 @@ this readme is mostly a reference for me, at least for now. will clean up ~~for 
 
 ## Roadmap
 - v0.1: full-fledged control panel - done! :D
-- v0.2: printing tm
+- v0.2: pygame port
+    - clickable buttons, ClickableScreen
+    - adventurescript io
+    - quitting, saving, restoring
+- v0.3: printing tm
     - show the text
     - make it not overflow
     - use a custom font
-- v0.3: scroll area
+- v0.4: scroll area
     - scroll back up
     - also make it have cool buttons too
     - add background to the main screen
