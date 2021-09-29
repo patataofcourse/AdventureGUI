@@ -1,4 +1,4 @@
-# AdventureGUI
+# AdventureGUI (pygame branch)
 ## AdventureScript, featuring buttons :D
 this readme is mostly a reference for me, at least for now. will clean up ~~for public releases~~ sometime before 1.0
 
@@ -26,6 +26,6 @@ this readme is mostly a reference for me, at least for now. will clean up ~~for 
 * func.py: some useful stuff
 
 ## Instructions
-You'll need `pyglet` to use this. Download it using pip.
+You'll need `pygame` to use this. Download it using pip.
 
 Run the program with `python main.py`. If you want to run some other game (inside the games folder) that isn't the test game, run `python main.py [gamename]`.

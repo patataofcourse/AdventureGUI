@@ -7,10 +7,6 @@ pygame.init()
 
 import window
 
-#import events
-#import asgui_io as io
-#import res
-
 def run_as():
     name = "test"
     if len(sys.argv) > 1:
@@ -27,4 +23,3 @@ as_thread = threading.Thread(target=run_as)
 
 as_thread.start()
 window.run()
-#pyglet.app.run()

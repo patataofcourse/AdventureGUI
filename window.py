@@ -11,7 +11,7 @@ fps = 60
 clock = pygame.time.Clock()
 
 window = pygame.display.set_mode((888, 80))
-pygame.display.set_caption('My Game!')
+pygame.display.set_caption('AdventureGUI v0.2-dev')
 
 def run():
   # The main game loop
