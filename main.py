@@ -21,5 +21,5 @@ def run_as():
 
 as_thread = threading.Thread(target=run_as)
 
-as_thread.start()
+#as_thread.start()
 window.run()

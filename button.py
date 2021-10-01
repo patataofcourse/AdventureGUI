@@ -13,6 +13,11 @@ class ButtonSet:
             button = self.buttons[button]
             button.check_pressed(mouse_x, mouse_y)
     
+    def release(self):
+        for button in self.buttons:
+            button = self.buttons[button]
+            button.is_pressed = False
+    
     def draw(self):
         for button in self.buttons:
             button = self.buttons[button]

@@ -29,6 +29,8 @@ def run():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
                 buttons.check_pressed(x,y)
+            if event.type == pygame.MOUSEBUTTONUP:
+                buttons.release()
         
         # rendering
         window.fill(color("333"))
