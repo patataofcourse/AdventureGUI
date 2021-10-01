@@ -14,7 +14,15 @@ fps = 60
 clock = pygame.time.Clock()
 
 buttons = button.ButtonSet(window)
-buttons.add_button("button1", button.Button.from_object(8, 8, res.btn_input))
+
+for n in range(9):
+    n += 1
+    buttons.add_button(f"b{n}", button.Button.from_object(8+72*(n-1), 8, res.btn_grey))
+
+extras = ("save", "restore", "quit")
+for b in extras:
+    n = extras.index(b)+1
+    buttons.add_button(f"{b}", button.Button.from_object(600+72*n, 8, res.btn_grey))
 
 def run():
     # The main game loop
