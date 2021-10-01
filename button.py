@@ -64,6 +64,10 @@ class Button:
         if self.is_pressed:
             self.event()
 
+    def change_images(self, images):
+        self.pressed = images.pressed
+        self.unpressed = images.unpressed
+
 def from_object(x, y, images):
     return Button(x, y, images.unpressed, images.pressed)
 

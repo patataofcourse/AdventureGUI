@@ -22,6 +22,7 @@ def quit():
     if choice or wait:
         global value
         window.closed = True
+        value = "q"
         pygame.quit()
 
 def button1():

@@ -30,7 +30,9 @@ for b in extras:
     buttons.add_button(f"{b}", button.Button.from_object(600+72*n, 8, res.btn_grey))
 
 def run():
-    # The main game loop
+    buttons["quit"].change_images(res.btn_quit)
+
+    # main loop
     global closed
     while True:
         # events
