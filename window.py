@@ -14,28 +14,26 @@ fps = 60
 clock = pygame.time.Clock()
 
 buttons = button.ButtonSet(window)
-buttons.add_button("button1", button.Button.from_object(0, 0, res.btn_input))
+buttons.add_button("button1", button.Button.from_object(8, 8, res.btn_input))
 
 def run():
     # The main game loop
-    while True:
-        global closed
-        if closed:
-            pygame.quit()
-            return
-        
-        # Get inputs
+    global closed
+    while not closed:
+        # events
         for event in pygame.event.get() :
             if event.type == pygame.QUIT :
                 pygame.quit()
                 closed = True
                 return
             if event.type == pygame.MOUSEBUTTONDOWN:
-                # Set the x, y postions of the mouse click
                 x, y = event.pos
-                print(x,y)
-    
-        # Render elements of the game
-        window.fill(color("fff"))
+                buttons.check_pressed(x,y)
+        
+        # rendering
+        window.fill(color("333"))
+        buttons.draw()
+
         pygame.display.update()
         clock.tick(fps)
+    pygame.quit()

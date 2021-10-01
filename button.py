@@ -10,12 +10,13 @@ class ButtonSet:
     
     def check_pressed(self, mouse_x, mouse_y):
         for button in self.buttons:
+            button = self.buttons[button]
             button.check_pressed(mouse_x, mouse_y)
     
     def draw(self):
         for button in self.buttons:
             button = self.buttons[button]
-            self.window.blit(button.image(), button.x, button.y)
+            self.window.blit(button.image(), (button.x, button.y))
     
     def remove_button(self, button):
         del self.buttons[button]
