@@ -4,6 +4,7 @@ class ButtonSet:
     def __init__(self, window):
         self.buttons = {}
         self.window = window
+        self.hidden = False
 
     def add_button(self, name, button):
         self.buttons[name] = button
@@ -17,6 +18,8 @@ class ButtonSet:
             self.buttons[button].is_pressed = False
     
     def draw(self):
+        if self.hidden:
+            return
         for button in self.buttons:
             button = self.buttons[button]
             self.window.blit(button.image(), (button.x, button.y))
@@ -30,6 +33,12 @@ class ButtonSet:
     def __call__(self):
         for button in self.buttons:
             self.buttons[button]()
+    
+    def hide(self):
+        self.hidden = True
+    
+    def show(self):
+        self.hidden = False
 
 
 class Button:
