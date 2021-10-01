@@ -27,6 +27,7 @@ this readme is mostly a reference for me, at least for now. will clean up ~~for 
 * events.py: manages button handlers
 * window.py: all the proper pyglet window code
 * res.py: loads the files inside resources, like images and such
+* button.py: class for buttons and the entire "button set" (all clickable things in the screen)
 * func.py: some useful stuff
 
 ## Instructions
