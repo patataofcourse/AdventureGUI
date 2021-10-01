@@ -19,6 +19,11 @@ for n in range(9):
     n += 1
     buttons.add_button(f"b{n}", button.Button.from_object(8+72*(n-1), 8, res.btn_grey))
 
+def test_event():
+    print("button 1 was clicked")
+
+buttons["b1"].event = test_event
+
 extras = ("save", "restore", "quit")
 for b in extras:
     n = extras.index(b)+1
@@ -37,6 +42,7 @@ def run():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
                 buttons.check_pressed(x,y)
+                buttons()
             if event.type == pygame.MOUSEBUTTONUP:
                 buttons.release()
         

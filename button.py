@@ -10,13 +10,11 @@ class ButtonSet:
     
     def check_pressed(self, mouse_x, mouse_y):
         for button in self.buttons:
-            button = self.buttons[button]
-            button.check_pressed(mouse_x, mouse_y)
+            self.buttons[button].check_pressed(mouse_x, mouse_y)
     
     def release(self):
         for button in self.buttons:
-            button = self.buttons[button]
-            button.is_pressed = False
+            self.buttons[button].is_pressed = False
     
     def draw(self):
         for button in self.buttons:
@@ -28,6 +26,10 @@ class ButtonSet:
 
     def __getitem__(self, name):
         return self.buttons[name]
+    
+    def __call__(self):
+        for button in self.buttons:
+            self.buttons[button]()
 
 
 class Button:
@@ -37,11 +39,14 @@ class Button:
         up_size = unpressed.get_size() 
         p_size = pressed.get_size()
         if p_size != up_size:
-            raise Exception("Pressed and unpressed images for button don't match")
+            raise Exception("Sizes of pressed and unpressed images for button don't match")
         self.size = up_size
         self.unpressed = unpressed
         self.pressed = pressed
         self.is_pressed = False
+        def default_event():
+            pass
+        self.event = default_event
 
     def image(self):
         return self.pressed if self.is_pressed else self.unpressed
@@ -54,6 +59,10 @@ class Button:
 
     def set_event(self, event):
         self.event = event
+
+    def __call__(self):
+        if self.is_pressed:
+            self.event()
 
 def from_object(x, y, images):
     return Button(x, y, images.unpressed, images.pressed)
