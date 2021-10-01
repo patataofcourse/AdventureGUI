@@ -4,8 +4,9 @@ import sys
 
 import pygame
 pygame.init()
-
 import window
+
+import events
 
 def run_as():
     name = "test"

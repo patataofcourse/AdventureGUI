@@ -32,7 +32,7 @@ for b in extras:
 def run():
     # The main game loop
     global closed
-    while not closed:
+    while True:
         # events
         for event in pygame.event.get() :
             if event.type == pygame.QUIT :
@@ -45,9 +45,13 @@ def run():
                 buttons()
             if event.type == pygame.MOUSEBUTTONUP:
                 buttons.release()
+
+        # closes loop if pygame has been quit through an event
+        if closed:
+            break
         
         # rendering
-        window.fill(color("333"))
+        window.fill(color("333")) # background color, to be changed
         buttons.draw()
 
         pygame.display.update()

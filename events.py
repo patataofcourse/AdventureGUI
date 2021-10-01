@@ -1,7 +1,6 @@
-import pyglet
+import pygame
 
-import window as w
-window = w.window
+import window
 
 max_buttons = 1
 choice = False
@@ -22,8 +21,8 @@ def restore():
 def quit():
     if choice or wait:
         global value
-        value = "q"
-        window.close()
+        window.closed = True
+        pygame.quit()
 
 def button1():
     if choice or wait:
@@ -72,11 +71,11 @@ def button9():
 
 button_events = [button1, button2, button3, button4, button5, button6, button7, button8, button9]
 
-c = 0
-for button in w.buttons:
-    button.set_handler("on_release", button_events[c])
-    c += 1
+n = 1
+while n < 10:
+    window.buttons[f"b{n}"].set_event(button_events[n-1])
+    n += 1
 
-w.save_btn.set_handler("on_release", save)
-w.restore_btn.set_handler("on_release", restore)
-w.quit_btn.set_handler("on_release", quit)
+window.buttons["save"].set_event(save)
+window.buttons["restore"].set_event(restore)
+window.buttons["quit"].set_event(quit)
