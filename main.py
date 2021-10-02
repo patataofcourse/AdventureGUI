@@ -12,6 +12,7 @@ import events
 
 def run_as():
     try:
+        print("\n\n")
         name = "test"
         if len(sys.argv) > 1:
             name = sys.argv[1]
