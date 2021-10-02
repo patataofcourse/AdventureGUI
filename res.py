@@ -1,85 +1,68 @@
-import pyglet
+import os
 
-btn_grey = pyglet.resource.image("button_grey.png")
+import pygame
 
-btn_input = pyglet.resource.image("button_input.png")
-btn_input_p = pyglet.resource.image("button_input_p.png")
+path = os.path.join(os.curdir, "resources")
 
-btn_save = pyglet.resource.image("button_save.png")
-btn_save_p = pyglet.resource.image("button_save_p.png")
+def get_image(name, alpha = True):
+    name = os.path.join(path, name)
+    if alpha:
+        return pygame.image.load(name).convert_alpha()
+    else:
+        return pygame.image.load(name).convert()
 
-btn_restore = pyglet.resource.image("button_restore.png")
-btn_restore_p = pyglet.resource.image("button_restore_p.png")
+class ButtonImages:
+    def __init__(self, unpressed, pressed):
+        self.unpressed = unpressed
+        self.pressed = pressed
+        
+        #shortcuts
+        self.up = unpressed
+        self.p = pressed
 
-btn_quit = pyglet.resource.image("button_quit.png")
-btn_quit_p = pyglet.resource.image("button_quit_p.png")
+def from_filenames(unpressed, pressed, alpha=True):
+    return ButtonImages(get_image(unpressed, alpha), get_image(pressed, alpha))
+ButtonImages.from_filenames = from_filenames
+del from_filenames
 
-btn_red = pyglet.resource.image("button_red.png")
-btn_red_p = pyglet.resource.image("button_red_p.png")
+btn_grey = ButtonImages.from_filenames("button_grey.png", "button_grey.png")
 
-btn_orange = pyglet.resource.image("button_orange.png")
-btn_orange_p = pyglet.resource.image("button_orange_p.png")
+btn_input = ButtonImages.from_filenames("button_input.png", "button_input_p.png")
 
-btn_yellow = pyglet.resource.image("button_yellow.png")
-btn_yellow_p = pyglet.resource.image("button_yellow_p.png")
+btn_save = ButtonImages.from_filenames("button_save.png", "button_save_p.png")
 
-btn_green = pyglet.resource.image("button_green.png")
-btn_green_p = pyglet.resource.image("button_green_p.png")
+btn_restore = ButtonImages.from_filenames("button_restore.png", "button_restore_p.png")
 
-btn_blue = pyglet.resource.image("button_blue.png")
-btn_blue_p = pyglet.resource.image("button_blue_p.png")
+btn_quit = ButtonImages.from_filenames("button_quit.png", "button_quit_p.png")
 
-btn_purple = pyglet.resource.image("button_purple.png")
-btn_purple_p = pyglet.resource.image("button_purple_p.png")
+btn_red = ButtonImages.from_filenames("button_red.png", "button_red_p.png")
 
-btn_1 = pyglet.resource.image("button_1.png")
-btn_1_p = pyglet.resource.image("button_1.png")
+btn_orange = ButtonImages.from_filenames("button_orange.png", "button_orange_p.png")
 
-btn_2 = pyglet.resource.image("button_2.png")
-btn_2_p = pyglet.resource.image("button_2.png")
+btn_yellow = ButtonImages.from_filenames("button_yellow.png", "button_yellow_p.png")
 
-btn_3 = pyglet.resource.image("button_3.png")
-btn_3_p = pyglet.resource.image("button_3.png")
+btn_green = ButtonImages.from_filenames("button_green.png", "button_green_p.png")
 
-btn_4 = pyglet.resource.image("button_4.png")
-btn_4_p = pyglet.resource.image("button_4.png")
+btn_blue = ButtonImages.from_filenames("button_blue.png", "button_blue_p.png")
 
-btn_5 = pyglet.resource.image("button_5.png")
-btn_5_p = pyglet.resource.image("button_5.png")
+btn_purple = ButtonImages.from_filenames("button_purple.png", "button_purple_p.png")
 
-btn_6 = pyglet.resource.image("button_6.png")
-btn_6_p = pyglet.resource.image("button_6.png")
+btn_1 = ButtonImages.from_filenames("button_1.png", "button_1_p.png")
 
-btn_7 = pyglet.resource.image("button_7.png")
-btn_7_p = pyglet.resource.image("button_7.png")
+btn_2 = ButtonImages.from_filenames("button_2.png", "button_2_p.png")
 
-btn_8 = pyglet.resource.image("button_8.png")
-btn_8_p = pyglet.resource.image("button_8.png")
+btn_3 = ButtonImages.from_filenames("button_3.png", "button_3_p.png")
 
-btn_9 = pyglet.resource.image("button_9.png")
-btn_9_p = pyglet.resource.image("button_9.png")
+btn_4 = ButtonImages.from_filenames("button_4.png", "button_4_p.png")
+
+btn_5 = ButtonImages.from_filenames("button_5.png", "button_5_p.png")
+
+btn_6 = ButtonImages.from_filenames("button_6.png", "button_6_p.png")
+
+btn_7 = ButtonImages.from_filenames("button_7.png", "button_7_p.png")
+
+btn_8 = ButtonImages.from_filenames("button_8.png", "button_8_p.png")
+
+btn_9 = ButtonImages.from_filenames("button_9.png", "button_9_p.png")
 
 number_buttons = [btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9]
-
-pressed = {
-    btn_input: btn_input_p,
-    btn_grey: btn_grey,
-    btn_save: btn_save_p,
-    btn_restore: btn_restore_p,
-    btn_quit: btn_quit_p,
-    btn_red: btn_red_p,
-    btn_orange: btn_orange_p,
-    btn_yellow: btn_yellow_p,
-    btn_green: btn_green_p,
-    btn_blue: btn_blue_p,
-    btn_purple: btn_purple_p,
-    btn_1: btn_1_p,
-    btn_2: btn_2_p,
-    btn_3: btn_3_p,
-    btn_4: btn_4_p,
-    btn_5: btn_5_p,
-    btn_6: btn_6_p,
-    btn_7: btn_7_p,
-    btn_8: btn_8_p,
-    btn_9: btn_9_p
-}

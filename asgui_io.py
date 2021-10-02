@@ -5,25 +5,27 @@ import events
 import res
 import window
 
+show = default.show
 load_file = default.load_file
-def show(info, text):
-    window.labeltext += text.split("\n")
-    if len(window.labeltext) > 20:
-        window.labeltext = window.labeltext[-20:]
+
+# def show(info, text):
+#     window.labeltext += text.split("\n")
+#     if len(window.labeltext) > 20:
+#         window.labeltext = window.labeltext[-20:]
 
 def wait(info, **kwargs):
     events.value = ""
     events.wait = True
-    window.change_button_gfx(window.buttons[0], res.btn_input)
+    window.buttons["b1"].change_images(res.btn_input)
     while events.value == "" and not window.closed:
         time.sleep(1/60)
-    if window.closed:
-        quit()
     if events.value == "q":
         info.status = "quit"
         info.showfunc(info, ">> Quit")
         return 0
-    window.change_button_gfx(window.buttons[0], res.btn_grey)
+    if window.closed:
+        quit()
+    window.buttons["b1"].change_images(res.btn_grey)
     events.wait = False
 
 def query(info, text, choices, allow_save, **kwargs):
@@ -39,18 +41,18 @@ def query(info, text, choices, allow_save, **kwargs):
     events.max_buttons = c-1
     if allow_save:
         events.cansave = True
-        window.change_button_gfx(window.save_btn, res.btn_save)
-        window.change_button_gfx(window.restore_btn, res.btn_restore)
+        window.buttons["save"].change_images(res.btn_save)
+        window.buttons["restore"].change_images(res.btn_restore)
     for choice in range(c-1):
-        window.change_button_gfx(window.buttons[choice], res.number_buttons[choice])
+        window.buttons[f"b{choice+1}"].change_images(res.number_buttons[choice])
     while events.value == "" and not window.closed:
         time.sleep(1/60)
     if window.closed:
         quit()
     for choice in range(c-1):
-        window.change_button_gfx(window.buttons[choice], res.btn_grey)
-    window.change_button_gfx(window.save_btn, res.btn_grey)
-    window.change_button_gfx(window.restore_btn, res.btn_grey)
+        window.buttons[f"b{choice+1}"].change_images(res.btn_grey)
+    window.buttons["save"].change_images(res.btn_grey)
+    window.buttons["restore"].change_images(res.btn_grey)
     events.choice = False
     events.cansave = False
     if events.value == "q":

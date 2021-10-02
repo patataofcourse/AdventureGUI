@@ -1,57 +1,61 @@
-import pyglet
+import sys
 
+import pygame
+window = pygame.display.set_mode((888, 80))
+pygame.display.set_caption('AdventureGUI v0.2-dev')
+
+import button
 import res
 from func import *
 
-LABEL_LINES = 20
-
 closed = False
 
-window = pyglet.window.Window(width=888, height=480, caption="AdventureGUI v0.2-dev")
-batch = pyglet.graphics.Batch()
+fps = 60
+clock = pygame.time.Clock()
 
-frame = pyglet.gui.Frame(window, order=4)
+buttons = button.ButtonSet(window)
 
-buttons = []
-x = 8
-for b in range(9):
-    b = pyglet.gui.PushButton(x, 8, res.btn_grey, res.btn_grey, batch=batch)
-    frame.add_widget(b)
-    buttons.append(b)
-    x += 72
+for n in range(9):
+    n += 1
+    buttons.add_button(f"b{n}", button.Button.from_object(8+72*(n-1), 8, res.btn_grey))
 
-save_btn = pyglet.gui.PushButton(672, 8, res.btn_grey, res.btn_grey, batch=batch)
-frame.add_widget(save_btn)
+def test_event():
+    print("button 1 was clicked")
 
-restore_btn = pyglet.gui.PushButton(744, 8, res.btn_grey, res.btn_grey, batch=batch)
-frame.add_widget(restore_btn)
+buttons["b1"].event = test_event
 
-quit_btn = pyglet.gui.PushButton(816, 8, res.btn_quit_p, res.btn_quit, batch=batch)
-frame.add_widget(quit_btn)
+extras = ("save", "restore", "quit")
+for b in extras:
+    n = extras.index(b)+1
+    buttons.add_button(f"{b}", button.Button.from_object(600+72*n, 8, res.btn_grey))
 
-label = pyglet.text.Label("",x=8,y=472-18, height=392, width=872, color=(255,255,255,255), batch=batch, multiline = True)
-labeltext = []
+def run():
+    buttons["quit"].change_images(res.btn_quit)
 
-@window.event
-def on_draw():
-    window.clear()
-    label.text = "\n".join(labeltext)
-    batch.draw()
-
-def update(dt): #update every frame
-    if closed:
-        pyglet.app.exit()
-        if hasattr(pyglet.window, "close"):
-            window.close()
-pyglet.clock.schedule_interval(update, 1/60)
-
-@window.event
-def on_close():
+    # main loop
     global closed
-    closed = True
+    while True:
+        # events
+        for event in pygame.event.get() :
+            if event.type == pygame.QUIT :
+                pygame.quit()
+                closed = True
+                return
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = event.pos
+                buttons.check_pressed(x,y)
+                buttons()
+            if event.type == pygame.MOUSEBUTTONUP:
+                buttons.release()
 
-def change_button_gfx(button, gfx):
-    button._depressed_img = gfx
-    button._hover_img = gfx
-    button._pressed_img = res.pressed.get(gfx, gfx)
-    button._sprite.image = gfx
+        # closes loop if pygame has been quit through an event
+        if closed:
+            break
+        
+        # rendering
+        window.fill(color("333")) # background color, to be changed
+        buttons.draw()
+
+        pygame.display.update()
+        clock.tick(fps)
+    pygame.quit()
