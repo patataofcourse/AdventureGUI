@@ -6,7 +6,6 @@ import res
 import window
 
 show = default.show
-load_file = default.load_file
 
 # def show(info, text):
 #     window.labeltext += text.split("\n")
@@ -21,7 +20,7 @@ def wait(info, **kwargs):
         time.sleep(1/60)
     if events.value == "q":
         info.status = "quit"
-        info.showfunc(info, ">> Quit")
+        info.io.show(info, ">> Quit")
         return 0
     if window.closed:
         quit()
@@ -30,10 +29,10 @@ def wait(info, **kwargs):
 
 def query(info, text, choices, allow_save, **kwargs):
     if text != "":
-        info.showfunc(info, "> " + text)
+        info.io.show(info, "> " + text)
     c = 1
     for ch in choices:
-        info.showfunc(info, f"> {c}. {ch}")
+        info.io.show(info, f"> {c}. {ch}")
         c += 1
     
     events.value = ""
@@ -57,28 +56,28 @@ def query(info, text, choices, allow_save, **kwargs):
     events.cansave = False
     if events.value == "q":
         info.status = "quit"
-        info.showfunc(info, ">> Quit")
+        info.io.show(info, ">> Quit")
         return 0
     elif events.value == "s":
-        info.showfunc(info, ">> Save")
+        info.io.show(info, ">> Save")
         info.save()
-        info.showfunc(info, "Saved!")
+        info.io.show(info, "Saved!")
         info.pointer -= 1
         return 0
     elif events.value == "r":
-        info.showfunc(info, ">> Restore save")
+        info.io.show(info, ">> Restore save")
         try:
             info.load_save()
         except Exception as e:
-            info.showfunc(info, "No save exists!")
+            info.io.show(info, "No save exists!")
             info.pointer -= 1
             return 0
         else:
-            info.showfunc(info, "Save restored!")
+            info.io.show(info, "Save restored!")
             info.reload()
             return 0
     else:
-        info.showfunc(info, ">> " + events.value)
+        info.io.show(info, ">> " + events.value)
         return int(events.value)
 
-# io = default.as_io(default.show, default.wait, default.query, default.load_file)
+io = default.AdventureScriptIO(show, wait, query, default.load_file)

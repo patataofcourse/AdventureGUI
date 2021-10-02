@@ -2,7 +2,7 @@ import sys
 
 import pygame
 window = pygame.display.set_mode((888, 80))
-pygame.display.set_caption('AdventureGUI v0.2-dev')
+pygame.display.set_caption('AdventureGUI v0.2.1')
 
 import button
 import res

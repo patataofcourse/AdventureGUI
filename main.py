@@ -1,5 +1,6 @@
 import adventurescript
 import threading
+import traceback
 import sys
 
 import pygame
@@ -17,15 +18,12 @@ def run_as():
         if len(sys.argv) > 1:
             name = sys.argv[1]
         print("Returned: " + adventurescript.parse_sync(name,
-            show= io.show,
-            wait= io.wait,
-            query= io.query,
-            load_file= io.load_file
+            io = io.io
         ))
         window.closed = True
     except Exception as e:
         window.buttons.hide()
-        print(e)
+        print("".join(traceback.format_exception(type(e), e, e.__traceback__)))
 
 as_thread = threading.Thread(target=run_as)
 

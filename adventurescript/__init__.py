@@ -6,8 +6,8 @@ import platform
 
 __version__ = version.version
 
-async def parse(name, save_id=None, show=defaultio.show, wait=defaultio.wait, query=defaultio.query, addons = [], is_async=False, load_file=defaultio.load_file):
-    info = ContextInfo(name, save_id, show, wait, query, is_async, load_file)
+async def parse(name, save_id=None, io=defaultio.defaultio, addons = [], is_async=False):
+    info = ContextInfo(name, save_id, io, is_async)
     
     #Load addons
     for addon in addons: #TODO: rework addons
@@ -36,7 +36,7 @@ async def parse(name, save_id=None, show=defaultio.show, wait=defaultio.wait, qu
             info.pointer += 1
     
     #The actual parsing
-    while info.pointer <= len(info.script):
+    while info.pointer <= len(info.script) or info.status != "ok":
         if info.status == "ok":
             pass
         elif info.status.startswith("ending") or info.status.startswith("quit"):

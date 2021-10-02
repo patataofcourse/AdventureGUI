@@ -1,6 +1,13 @@
 import os
 import platform
 
+class AdventureScriptIO:
+    def __init__(self, show, wait, query, load_file):
+        self.show = show
+        self.wait = wait
+        self.query = query
+        self.load_file = load_file
+
 def show(info, text, **kwargs):
     print(text)
 
@@ -14,10 +21,10 @@ def wait(info, **kwargs):
 
 def query(info, text, choices, allow_save, **kwargs):
     if text != "":
-        info.showfunc(info, text)
+        info.io.show(info, text)
     c = 1
     for ch in choices:
-        info.showfunc(info, f"{c}. {ch}")
+        info.io.show(info, f"{c}. {ch}")
         c += 1
     result = ""
     while True:
@@ -25,15 +32,15 @@ def query(info, text, choices, allow_save, **kwargs):
         if allow_save:
             if result == "s":
                 info.save()
-                info.showfunc(info, "Saved!")
+                info.io.show(info, "Saved!")
                 continue
             elif result == "r":
                 try:
                     info.load_save()
                 except Exception as e:
-                    info.showfunc(info, "No save exists!")
+                    info.io.show(info, "No save exists!")
                 else:
-                    info.showfunc(info, "Save restored!")
+                    info.io.show(info, "Save restored!")
                     info.reload()
                     return 0
         if result == "q":
@@ -71,18 +78,20 @@ def load_file(game, filename, mode="r", **kwargs):
         else:
             return open(outfile, mode=mode, encoding="utf-8")
     except FileNotFoundError as e:
-        if kwargs.get("create"):
+        if kwargs.get("createdir"):
             dirname = "/".join(outfile.split("/")[:-1])
-            print(dirname)
             if not os.path.isdir(dirname):
-                os.system(f"mkdir {repr(dirname)}")
+                os.mkdir(dirname)
             
-            a = open(outfile, "w")
-            a.write("{}")
-            a.close()
+            if kwargs.get("create"):
+                a = open(outfile, "w")
+                a.write("{}")
+                a.close()
             if mode == "r":
                 return open(outfile, encoding="utf-8").read()
             else:
                 return open(outfile, mode=mode, encoding="utf-8")
         else:
             raise e
+
+defaultio = AdventureScriptIO(show, wait, query, load_file)
