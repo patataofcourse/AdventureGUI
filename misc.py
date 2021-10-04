@@ -1,3 +1,8 @@
+import os
+import sys
+
+path = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
+
 def color(hex):
     if type(hex) == str:
         if len(hex) == 3:

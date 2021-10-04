@@ -6,7 +6,7 @@ pygame.display.set_caption('AdventureGUI v0.2.1')
 
 import button
 import res
-from func import *
+import misc
 
 closed = False
 
@@ -53,7 +53,7 @@ def run():
             break
         
         # rendering
-        window.fill(color("333")) # background color, to be changed
+        window.fill(misc.color("333")) # background color, to be changed
         buttons.draw()
 
         pygame.display.update()

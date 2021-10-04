@@ -2,14 +2,13 @@ import os
 
 import pygame
 
-path = os.path.join(os.curdir, "resources")
+import misc
+print(misc.path)
+
 
 def get_image(name, alpha = True):
-    name = os.path.join(path, name)
-    if alpha:
-        return pygame.image.load(name).convert_alpha()
-    else:
-        return pygame.image.load(name).convert()
+    name = os.path.join(misc.path, "resources", name)
+    return pygame.image.load(name).convert_alpha()
 
 class ButtonImages:
     def __init__(self, unpressed, pressed):

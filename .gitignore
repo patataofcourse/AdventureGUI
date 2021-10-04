@@ -1,3 +1,6 @@
 **/__pycache__
+build
+dist
+
 games/*/save
 games/*/save_p

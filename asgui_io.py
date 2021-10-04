@@ -1,16 +1,13 @@
 import adventurescript.defaultio as default
+import os
 import time
 
 import events
+import misc
 import res
 import window
 
 show = default.show
-
-# def show(info, text):
-#     window.labeltext += text.split("\n")
-#     if len(window.labeltext) > 20:
-#         window.labeltext = window.labeltext[-20:]
 
 def wait(info, **kwargs):
     events.value = ""
@@ -80,4 +77,47 @@ def query(info, text, choices, allow_save, **kwargs):
         info.io.show(info, ">> " + events.value)
         return int(events.value)
 
-io = default.AdventureScriptIO(show, wait, query, default.load_file)
+def load_file(game, filename, mode="r", **kwargs):
+    if type(game) != str:
+        raise TypeError("game must be a string")
+    if type(filename) != str:
+        raise TypeError("filename must be a string")
+    
+    filetype = kwargs.get("type")
+    if filetype == "": filetype = None 
+
+    if kwargs.get("chapter") != None and kwargs.get("chapter") != "":
+        chapter = kwargs.get("chapter") + "/"
+    else:
+        chapter = ""
+
+    outfile = os.path.join(misc.path, "games/", {
+        None: f"{game}/{filename}",
+        "script": f"{game}/script/{chapter}{filename}.asf",
+        "save": f"{game}/save/{filename}.asv",
+        "save_p": f"{game}/save_p/{filename}.asv" #for future persistent save (achievements)
+    }.get(filetype))
+    
+    try:
+        if mode == "r":
+            return open(outfile, encoding="utf-8").read()
+        else:
+            return open(outfile, mode=mode, encoding="utf-8")
+    except FileNotFoundError as e:
+        if kwargs.get("createdir"):
+            dirname = "/".join(outfile.split("/")[:-1])
+            if not os.path.isdir(dirname):
+                os.mkdir(dirname)
+            
+            if kwargs.get("create"):
+                a = open(outfile, "w")
+                a.write("{}")
+                a.close()
+            if mode == "r":
+                return open(outfile, encoding="utf-8").read()
+            else:
+                return open(outfile, mode=mode, encoding="utf-8")
+        else:
+            raise e
+
+io = default.AdventureScriptIO(show, wait, query, load_file)
