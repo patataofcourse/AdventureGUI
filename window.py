@@ -48,11 +48,11 @@ def run():
                 pygame.quit()
                 closed = True
                 return
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            elif event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos
                 buttons.check_pressed(x,y)
-                buttons()
             if event.type == pygame.MOUSEBUTTONUP:
+                buttons()
                 buttons.release()
         scroll_area.update(events)
 
