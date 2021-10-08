@@ -1,5 +1,3 @@
-import sys
-
 import pygame
 window = pygame.display.set_mode((888, 480))
 pygame.display.set_caption('AdventureGUI v0.3-dev')
@@ -7,6 +5,7 @@ pygame.display.set_caption('AdventureGUI v0.3-dev')
 import button
 import res
 import misc
+import scrollbar
 
 closed = False
 
@@ -24,7 +23,8 @@ for b in extras:
     n = extras.index(b)+1
     buttons.add_button(f"{b}", button.Button.from_object(600+72*n, 408, res.btn_grey))
 
-scroll_surface = pygame.Surface((872, 384))
+scroll_surface = pygame.Surface((856, 600))
+scrollbar = scrollbar.ScrollBar(16, 384, scroll_surface, 384)
 
 def run():
     buttons["quit"].change_images(res.btn_quit)
@@ -53,7 +53,8 @@ def run():
         # rendering
         window.fill(misc.color("333")) # background color, to be changed
         buttons.draw()
-        window.blit(scroll_surface, (8,8))
+        window.blit(scroll_surface.subsurface(0,0,856,384), (8,8))
+        scrollbar.draw(window, 864, 8)
 
         #update frame
         pygame.display.update()
