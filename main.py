@@ -9,7 +9,6 @@ pygame.init()
 import window
 
 import asgui_io as io
-import events
 
 def run_as():
     try:
